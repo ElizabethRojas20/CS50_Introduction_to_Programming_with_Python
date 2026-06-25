@@ -56,7 +56,7 @@ for (x, y), filas in coordinates.items():
 
     means.append(mean)
 
-with open("Hall_results_batch_means.csv", "w", newline="") as file:
+with open("Hall_results_batch_mean.csv", "w", newline="") as file:
     fieldnames = ["x", "y", "Rs_ohm", "Rs_error", "rho_ohmcm", "rho_error", "n", "n_error", "mu", "mu_error", "RH_mean", "RH_error", "RH_difference_percent"]
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()

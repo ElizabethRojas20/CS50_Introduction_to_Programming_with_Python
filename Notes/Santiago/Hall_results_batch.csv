@@ -1,4 +1,4 @@
-﻿FileName,Coordinate,x,y,Point,Status,B_T,Thickness_nm,Rs_ohm,Rs_error,rho_ohmcm,rho_error,n_cm-3,n_error,mu_cm2V-1s-1,mu_error,RH_A,RH_B,RH_mean,RH_error,RH_difference_percent,SemiconductorType
+﻿FileName,Coordinate,x,y,Point,Status,B_T,Thickness_nm,Rs_ohm,Rs_error,rho_ohmcm,rho_error,n,n_error,mu,mu_error,RH_A,RH_B,RH_mean,RH_error,RH_difference_percent,SemiconductorType
 "260526 (0,0) p1.txt","{0, 0}",0,0,1,OK,0.42,350,189.4067707,0.101701162,0.006629237,3.55954E-06,1.37267E+20,7.20533E+19,6.86833943,3.60529793,0.100638492,0.117914387,0.109276439,0.057360868,15.80935065,n-type
 "260526 (0,0) p2.txt","{0, 0}",0,0,2,OK,0.42,350,189.4067707,0.101701162,0.006629237,3.55954E-06,9.58762E+19,2.11696E+19,9.833443886,2.171243938,0.134915419,0.177988084,0.156451752,0.034544755,27.53095707,n-type
 "260526 (0,0) p3.txt","{0, 0}",0,0,3,OK,0.42,350,189.4067707,0.101701162,0.006629237,3.55954E-06,9.17685E+19,2.57836E+19,10.27360679,2.886509461,0.153348315,0.17356132,0.163454818,0.045924769,12.36611115,n-type
