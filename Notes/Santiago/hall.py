@@ -4,41 +4,41 @@ from collections import defaultdict
 data = []
 
 with open("Hall_results_batch.csv") as file:
-    reader = csv.reader(file)
-    for x, y, Rs_ohm, Rs_error, rho_ohmcm, rho_error, n, n_error, mu, mu_error, RH_mean, RH_error, RH_difference_percent in reader:
+    reader = csv.DictReader(file)
+    for row in reader:
         data.append({
-            "x": x, 
-            "y": y, 
-            "Rs_ohm": Rs_ohm, 
-            "Rs_error": Rs_error, 
-            "rho_ohmcm": rho_ohmcm, 
-            "rho_error": rho_error, 
-            "n": n, 
-            "n_error": n_error, 
-            "mu": mu, 
-            "mu_error": mu_error, 
-            "RH_mean": RH_mean, 
-            "RH_error": RH_error, 
-            "RH_difference_percent": RH_difference_percent
+            "x": row["x"], 
+            "y": row["y"], 
+            "Rs_ohm": row["Rs_ohm"], 
+            "Rs_error": row["Rs_error"], 
+            "rho_ohmcm": row["rho_ohmcm"], 
+            "rho_error": row["rho_error"], 
+            "n": row["n"], 
+            "n_error": row["n_error"], 
+            "mu": row["mu"], 
+            "mu_error": row["mu_error"], 
+            "RH_mean": row["RH_mean"], 
+            "RH_error": row["RH_error"], 
+            "RH_difference_percent": row["RH_difference_percent"]
             })
 
 
-coordinates = []
+coordinates = defaultdict(list)
 
 with open("Hall_results_batch.csv") as file:
     reader = csv.DictReader(file)
 
     for row in reader:
-        x = float(row["x"])
-        y = float(row["y"])
+        x = float(row["x"])  # Assuming x is the third column
+        y = float(row["y"])  # Assuming y is the fourth column
 
-        coordinates.append((x, y))
+        coordinates[(x, y)].append(row)
 
 means = []
 
 for (x, y), filas in coordinates.items():
 
-    means = {
+    mean = {
         "x": x,
         "y": y,
         "Rs_ohm": sum(float(f["Rs_ohm"]) for f in filas) / len(filas),
@@ -54,6 +54,10 @@ for (x, y), filas in coordinates.items():
         "RH_difference_percent": sum(float(f["RH_difference_percent"]) for f in filas) / len(filas)
     }
 
-    means.append(means)
+    means.append(mean)
 
-print(means)
+with open("Hall_results_batch_means.csv", "w", newline="") as file:
+    fieldnames = ["x", "y", "Rs_ohm", "Rs_error", "rho_ohmcm", "rho_error", "n", "n_error", "mu", "mu_error", "RH_mean", "RH_error", "RH_difference_percent"]
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(means)
