@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poster Científico A3</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .poster {
+    width: 297mm;
+    min-height: 420mm;
+    background: #fdf5ee;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: #1a7a7a;
+    padding: 22px 28px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .header-left { flex: 1; }
+
+  .poster-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24pt;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+}
+
+  .authors {
+    margin-top: 10px;
+    font-size: 7pt;
+    color: #a8d8d8;
+    line-height: 1.6;
+  }
+
+  .authors strong { color: #ffffff; }
+
+.logo-box img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
+  /* ── DECORATIVE CIRCLE ── */
+  .header-decoration {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ── BODY GRID ── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 12px;
+    padding: 14px 16px;
+    align-items: start;
+  }
+
+  .section {
+    background: #fdf5ee;
+    padding: 10px 12px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #ffffff;
+    background: #1a7a7a;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+
+  .section-text {
+    font-size: 6.5pt;
+    color: #3a3a3a;
+    line-height: 1.55;
+    text-align: justify;
+  }
+
+  .section-text p + p { margin-top: 6px; }
+
+  /* ── INTRO ── */
+  .intro { grid-column: 1; grid-row: 1; }
+
+  /* ── METHODS ── */
+  .methods {
+    grid-column: 2;
+    grid-row: 1;
+    background: #f5e8d8;
+  }
+
+  .butterfly-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6px 0;
+    position: relative;
+  }
+
+  .butterfly-img {
+    width: 120px;
+    height: 90px;
+    background: linear-gradient(135deg, #4ab5c4 0%, #2a8fa0 40%, #1a6a78 70%, #0f4a55 100%);
+    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7pt;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    margin: 0 auto 6px;
+  }
+
+  .fig-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+
+  .fig-label {
+    font-size: 5.5pt;
+    color: #2a7a7a;
+    font-style: italic;
+    background: rgba(26,122,122,0.08);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  /* ── RESULTS ── */
+  .results { grid-column: 1; grid-row: 2; }
+
+  .chart-placeholder {
+    margin: 8px 0;
+    background: #f0e8da;
+    border: 0.5px solid #c8b89a;
+    padding: 8px;
+    border-radius: 2px;
+  }
+
+  .chart-svg { width: 100%; }
+
+  .figure-caption {
+    font-size: 5.5pt;
+    color: #555;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+
+  .figure-caption strong { color: #333; }
+
+  /* ── DISCUSSION ── */
+  .discussion { grid-column: 2; grid-row: 2; background: #f5e8d8; }
+
+  .vote-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 6px 0 8px;
+  }
+
+  .vote-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .vote-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .vote-no {
+    background: #e05050;
+    color: white;
+  }
+
+  .vote-yes {
+    background: #1a7a7a;
+    color: white;
+  }
+
+  .vote-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #fff;
+    background: #c0c0c0;
+    padding: 2px 14px;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .vote-label.yes-label { background: #1a7a7a; }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    background: #fdf5ee;
+    border-top: 2px solid #1a7a7a;
+  }
+
+  /* ── REFERENCES ── */
+  .references-section {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .conclusions-references {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: #f5e8d8;
+    border-top: 3px solid #1a7a7a;
+  }
+
+  .ref-list {
+    font-size: 5.5pt;
+    color: #3a3a3a;
+    line-height: 1.6;
+  }
+
+  .ref-list a { color: #1a7a7a; text-decoration: none; word-break: break-all; }
+
+  .qr-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .qr-box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #c8b89a;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5pt;
+    color: #888;
+    flex-shrink: 0;
+  }
+
+  /* decorative teal circle top-right */
+  .teal-circle {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 60px;
+    height: 60px;
+    background: #2aa8a8;
+    border-radius: 50%;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* print styles */
+  @media print {
+    body { background: none; padding: 0; }
+    .poster { box-shadow: none; width: 297mm; min-height: 420mm; }
+  }
+
+  @page { size: A3 portrait; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header" style="position: relative; overflow: hidden;">
+    <div style="position: absolute; right: 110px; top: -20px; width: 100px; height: 100px; background: #2aa8a8; border-radius: 50%; opacity: 0.35; pointer-events:none;"></div>
+    <div class="header-left">
+      <div class="poster-title">
+        DESCIFRANDO LA LUZ
+        <span class="subtitle">
+            Monocromadores, especrómetros e interferómetros
+        </span>
+      </div>
+      <div class="authors" style="margin-top: 12px;">
+        <strong>Autor Presentador, código, Nombre del Curso</strong><br>
+        Santiago Alonso Villanueva Olano<br>
+        24<br>
+        FIS338 - Seminario de Física
+      </div>
+    </div>
+    <div class="logo-box">
+    <img src="pucp.png" alt="Logo PUCP">
+</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- INTRO -->
+    <div class="section intro">
+      <div class="section-title">Introducción</div>
+      <div class="section-text">
+        <p>La luz contiene mucha más información de la que percibimos a simple vista. Aunque nuestros ojos distinguen colores y brillos, instrumentos como los monocromadores, espectrómetros e interferómetros permiten revelar detalles ocultos sobre la materia y sus propiedades.</p>
+        <p>Gracias a estas herramientas es posible analizar cómo interactúa la luz con distintos materiales, identificar sustancias químicas e incluso estudiar fenómenos a escala microscópica. En particular, los interferómetros de Fabry–Pérot utilizan la interferencia de ondas luminosas para medir longitudes de onda con gran precisión.</p>
+        <p>Estas técnicas forman parte fundamental de la espectroscopía moderna y tienen aplicaciones en física, astronomía, química y ciencia de materiales.</p>
+      </div>
+    </div>
+
+    <!-- METHODS -->
+    <div class="section methods">
+      <div class="section-title">Métodos</div>
+      <!-- Butterfly illustration (SVG) -->
+      <div class="butterfly-figure">
+        <svg width="160" height="110" viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="wl" cx="35%" cy="40%"><stop offset="0%" stop-color="#7ddde8"/><stop offset="100%" stop-color="#1a7a7a"/></radialGradient>
+            <radialGradient id="wr" cx="65%" cy="40%"><stop offset="0%" stop-color="#7ddde8"/><stop offset="100%" stop-color="#1a7a7a"/></radialGradient>
+          </defs>
+          <!-- left upper wing -->
+          <ellipse cx="58" cy="38" rx="42" ry="30" fill="url(#wl)" transform="rotate(-15 58 38)"/>
+          <!-- right upper wing -->
+          <ellipse cx="102" cy="38" rx="42" ry="30" fill="url(#wr)" transform="rotate(15 102 38)"/>
+          <!-- left lower wing -->
+          <ellipse cx="52" cy="72" rx="28" ry="20" fill="#1a7a7a" transform="rotate(10 52 72)"/>
+          <!-- right lower wing -->
+          <ellipse cx="108" cy="72" rx="28" ry="20" fill="#1a7a7a" transform="rotate(-10 108 72)"/>
+          <!-- body -->
+          <ellipse cx="80" cy="56" rx="5" ry="26" fill="#0d4040"/>
+          <!-- antennae -->
+          <line x1="77" y1="32" x2="60" y2="12" stroke="#0d4040" stroke-width="1.2"/>
+          <circle cx="60" cy="12" r="2.5" fill="#0d4040"/>
+          <line x1="83" y1="32" x2="100" y2="12" stroke="#0d4040" stroke-width="1.2"/>
+          <circle cx="100" cy="12" r="2.5" fill="#0d4040"/>
+          <!-- wing vein lines -->
+          <line x1="80" y1="44" x2="44" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+          <line x1="80" y1="44" x2="30" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+          <line x1="80" y1="44" x2="116" y2="22" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+          <line x1="80" y1="44" x2="130" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+          <!-- labels -->
+          <text x="42" y="9" font-size="6" fill="#1a4a4a" font-family="Barlow,sans-serif">antenas</text>
+          <text x="95" y="25" font-size="6" fill="#1a4a4a" font-family="Barlow,sans-serif">ala anterior</text>
+          <text x="95" y="50" font-size="6" fill="#1a4a4a" font-family="Barlow,sans-serif">vena alar</text>
+          <text x="108" y="78" font-size="6" fill="#1a4a4a" font-family="Barlow,sans-serif">ala posterior</text>
+          <text x="62" y="100" font-size="6" fill="#1a4a4a" font-family="Barlow,sans-serif">abdomen</text>
+          <!-- label lines -->
+          <line x1="60" y1="12" x2="60" y2="11" stroke="#888" stroke-width="0.5"/>
+          <line x1="95" y1="24" x2="88" y2="32" stroke="#888" stroke-width="0.5"/>
+          <line x1="105" y1="49" x2="95" y2="50" stroke="#888" stroke-width="0.5"/>
+          <line x1="108" y1="75" x2="104" y2="70" stroke="#888" stroke-width="0.5"/>
+          <line x1="73" y1="100" x2="80" y2="80" stroke="#888" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="section-text">
+        <p>Nuestra metodología experimental fue una danza matizada entre pixels e imaginación, similar a componer una sinfonía con fuentes, diseños y gráficos como nuestros roles. Nos aventuramos en territorios inexplorados dentro de la esfera del diseño, desafiando la convención y abrazando la creatividad.</p>
+        <p>Cada elemento fue escudriñado y probado, no solo por su atractivo estético sino también por su profundo impacto en el compromiso y la comprensión del espectador. Cada elección, desde el esquema de colores hasta la selección de fuentes, fue sometida a una evaluación meticulosa, asegurando que nuestros esfuerzos creativos estuvieran firmemente arraigados tanto en la innovación artística como en el rigor científico.</p>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="section results">
+      <div class="section-title">Resultados</div>
+      <div class="section-text">
+        <p>Tras innumerables horas de noches sin dormir y la búsqueda incesante de la excelencia artística, nos encontramos al borde de develar los frutos de nuestro viaje artístico. Nuestros hallazgos anuncian un momento crucial, una relación simbiótica entre los elementos visuales y la acumulación del conocimiento científico.</p>
+        <p>La integración estratégica de colores, fuentes e imágenes ha logrado un nivel de compromiso del espectador sin precedentes. Como consecuencia, los ojos de nuestra audiencia no pudieron apartarse; estaban ensanchados con asombro, ceñudos en admiración y, en ocasiones, boquiabiertos por la maravilla de los números.</p>
+      </div>
+
+      <!-- Box & Whisker chart -->
+      <div class="chart-placeholder">
+        <svg class="chart-svg" viewBox="0 0 230 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- axes -->
+          <line x1="28" y1="8" x2="28" y2="88" stroke="#888" stroke-width="0.8"/>
+          <line x1="28" y1="88" x2="222" y2="88" stroke="#888" stroke-width="0.8"/>
+          <!-- y labels -->
+          <text x="2" y="90" font-size="5.5" fill="#888" font-family="Barlow,sans-serif">0</text>
+          <text x="2" y="65" font-size="5.5" fill="#888" font-family="Barlow,sans-serif">25</text>
+          <text x="2" y="48" font-size="5.5" fill="#888" font-family="Barlow,sans-serif">50</text>
+          <text x="2" y="30" font-size="5.5" fill="#888" font-family="Barlow,sans-serif">75</text>
+          <text x="2" y="12" font-size="5.5" fill="#888" font-family="Barlow,sans-serif">100</text>
+          <!-- grid lines -->
+          <line x1="28" y1="25" x2="222" y2="25" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <line x1="28" y1="48" x2="222" y2="48" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <line x1="28" y1="65" x2="222" y2="65" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <!-- box plot 1 -->
+          <line x1="48" y1="22" x2="48" y2="35" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="38" y="35" width="20" height="22" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="38" y1="44" x2="58" y2="44" stroke="#fff" stroke-width="1.5"/>
+          <line x1="48" y1="57" x2="48" y2="70" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="42" y1="22" x2="54" y2="22" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="42" y1="70" x2="54" y2="70" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- box plot 2 -->
+          <line x1="78" y1="18" x2="78" y2="30" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="68" y="30" width="20" height="25" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="68" y1="41" x2="88" y2="41" stroke="#fff" stroke-width="1.5"/>
+          <line x1="78" y1="55" x2="78" y2="68" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="72" y1="18" x2="84" y2="18" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="72" y1="68" x2="84" y2="68" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- box plot 3 -->
+          <line x1="108" y1="15" x2="108" y2="28" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="98" y="28" width="20" height="30" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="98" y1="38" x2="118" y2="38" stroke="#fff" stroke-width="1.5"/>
+          <line x1="108" y1="58" x2="108" y2="72" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="102" y1="15" x2="114" y2="15" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="102" y1="72" x2="114" y2="72" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- box plot 4 -->
+          <line x1="138" y1="20" x2="138" y2="32" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="128" y="32" width="20" height="24" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="128" y1="43" x2="148" y2="43" stroke="#fff" stroke-width="1.5"/>
+          <line x1="138" y1="56" x2="138" y2="66" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="132" y1="20" x2="144" y2="20" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="132" y1="66" x2="144" y2="66" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- box plot 5 -->
+          <line x1="168" y1="25" x2="168" y2="38" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="158" y="38" width="20" height="20" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="158" y1="48" x2="178" y2="48" stroke="#fff" stroke-width="1.5"/>
+          <line x1="168" y1="58" x2="168" y2="70" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="162" y1="25" x2="174" y2="25" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="162" y1="70" x2="174" y2="70" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- box plot 6 -->
+          <line x1="198" y1="28" x2="198" y2="42" stroke="#1a7a7a" stroke-width="1.2"/>
+          <rect x="188" y="42" width="20" height="18" fill="#1a7a7a" opacity="0.7"/>
+          <line x1="188" y1="50" x2="208" y2="50" stroke="#fff" stroke-width="1.5"/>
+          <line x1="198" y1="60" x2="198" y2="72" stroke="#1a7a7a" stroke-width="1.2"/>
+          <line x1="192" y1="28" x2="204" y2="28" stroke="#1a7a7a" stroke-width="1"/>
+          <line x1="192" y1="72" x2="204" y2="72" stroke="#1a7a7a" stroke-width="1"/>
+          <!-- outliers -->
+          <circle cx="48" cy="14" r="1.5" fill="none" stroke="#1a7a7a" stroke-width="0.8"/>
+          <circle cx="108" cy="10" r="1.5" fill="none" stroke="#1a7a7a" stroke-width="0.8"/>
+          <circle cx="78" cy="80" r="1.5" fill="none" stroke="#1a7a7a" stroke-width="0.8"/>
+        </svg>
+        <p class="figure-caption"><strong>Figura 1: Diagrama de Caja y Bigotes</strong><br>
+        En este gráfico, la caja representa el rango intercuartílico. Los bigotes se extienden para revelar los datos de alcance completo. El diagrama de caja y bigotes te guía a través de las profundidades ocultas de nuestros datos.</p>
+      </div>
+
+      <div class="section-text">
+        <p>Nuestros datos ofrecen una prueba irrefutable del poder de la belleza artística científica para cautivar al público de maneras que antes eran inimaginables.</p>
+        <p>La sinergia artística y científica descubierta en este esfuerzo sirve como testimonio del potencial transformador del visual storytelling en el mundo del diseño de posters científicos. Nos invita a romper con los lazos de las presentaciones formulaicas, desbloqueando un emocionante reino de compromiso que desafía la convención.</p>
+      </div>
+
+      <!-- Pie chart -->
+      <div class="chart-placeholder" style="display:flex; gap: 10px; align-items: flex-start;">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <!-- Pie segments -->
+          <circle cx="40" cy="40" r="36" fill="#c8e8e8"/>
+          <!-- segment 1 large teal -->
+          <path d="M40,40 L76,40 A36,36 0 1,0 9,59 Z" fill="#1a7a7a"/>
+          <!-- segment 2 medium salmon -->
+          <path d="M40,40 L9,59 A36,36 0 0,0 40,76 Z" fill="#e8a878"/>
+          <!-- segment 3 small teal light -->
+          <path d="M40,40 L40,76 A36,36 0 0,0 76,40 Z" fill="#5bbaba"/>
+          <!-- center hole -->
+          <circle cx="40" cy="40" r="14" fill="#f0e8da"/>
+        </svg>
+        <div class="section-text" style="flex:1;">
+          <p><strong>Figura 2: Gráfico de Tarta</strong><br>
+          En este cautivador gráfico circular, cada porción representa una parte del conjunto, revelando la composición matizada de nuestros datos. Cada segmento, desde el mayor al menor, representa la categoría dominante. Cada pieza contribuye a la narrativa rica y diversa de nuestro análisis.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCUSSION -->
+    <div class="section discussion">
+      <div class="section-title">Discusión</div>
+      <div class="section-text">
+        <p>Las implicaciones de nuestro estudio van mucho más allá de los confines de las presentaciones de posters; golpean en el corazón mismo del discurso académico. La unión de la estética y la ciencia, tal como se ve en esta exploración, enciende una chispa de curiosidad y pasión dentro de la comunidad científica.</p>
+        <p>Desafía las normas establecidas y fomenta un abrazo sin temor de las elecciones de diseño no convencionales.</p>
+      </div>
+
+      <!-- Vote items -->
+      <div class="vote-items">
+        <div class="vote-item">
+          <div class="vote-icon vote-no">✗</div>
+          <span class="vote-label">NO</span>
+        </div>
+        <div class="vote-item">
+          <div class="vote-icon vote-no">✗</div>
+          <span class="vote-label">NO</span>
+        </div>
+        <div class="vote-item">
+          <div class="vote-icon vote-no">✗</div>
+          <span class="vote-label">NO</span>
+        </div>
+        <div class="vote-item">
+          <div class="vote-icon vote-yes">✓</div>
+          <span class="vote-label yes-label">SÍ</span>
+        </div>
+      </div>
+
+      <div class="section-text">
+        <p>Al reflexionar sobre las profundas implicaciones de nuestros hallazgos, nos sentimos obligados a redefinir nuestras percepciones de lo que es posible en el mundo de la comunicación científica. Estamos, en esencia, en la cúspide de una revolución donde los posters científicos dejan de ser estáticas exhibiciones de datos y evolucionan hacia tapices vibrantes que tejen sin problemas conocimiento, intriga y belleza juntos.</p>
+      </div>
+    </div>
+
+    <!-- CONCLUSION + REFERENCES -->
+    <div class="conclusions-references">
+
+      <!-- Conclusion -->
+      <div class="section" style="background: #fdf5ee; border-right: 1px solid #e0d0c0;">
+        <div class="section-title">Conclusión</div>
+        <div class="section-text">
+          <p>En conclusión, nuestro estudio ofrece un respaldo inequívoco del potencial transformador que se encuentra en la intersección del arte y la ciencia dentro del dominio del diseño de posters. Al infundir el poder del storytelling visual en nuestras presentaciones, trascendemos las limitaciones de los enfoques convencionales, desbloqueando así un nuevo reino de compromiso y comprensión.</p>
+          <p>A través de este estudio, invitamos a todos los miembros de la comunidad científica a unirse a nosotros en este viaje transformador, donde la fusión del arte y la ciencia redefine la forma en que compartimos nuestros descubrimientos y donde el conocimiento se celebra como un exquisito tapiz de información, intriga y belleza.</p>
+        </div>
+      </div>
+
+      <!-- References -->
+      <div class="section" style="background: #f5e8d8;">
+        <div class="section-title">Referencias</div>
+        <div class="ref-list">
+          <p><a href="https://www.etsy.com/es/shop/ValaraArt">https://www.etsy.com/es/shop/ValaraArt</a></p>
+          <br>
+          <p>Insertar un código QR con un enlace a tu poster digital puede ser útil:<br>
+          <a href="https://thigh-qr-code-generator.com/">https://thigh-qr-code-generator.com/</a></p>
+          <br>
+          <p><a href="https://www.remove.bg">https://www.remove.bg</a></p>
+          <br>
+          <p><a href="https://www.pexels.com/photo/blue-morpho-butterfly-66877/">https://www.pexels.com/photo/blue-morpho-butterfly-66877/</a></p>
+          <div class="qr-area">
+            <div class="qr-box">
+              <svg width="44" height="44" viewBox="0 0 44 44">
+                <!-- QR pattern placeholder -->
+                <rect x="2" y="2" width="18" height="18" fill="none" stroke="#333" stroke-width="1.5"/>
+                <rect x="5" y="5" width="12" height="12" fill="#333"/>
+                <rect x="7" y="7" width="8" height="8" fill="#f5e8d8"/>
+                <rect x="9" y="9" width="4" height="4" fill="#333"/>
+                <rect x="24" y="2" width="18" height="18" fill="none" stroke="#333" stroke-width="1.5"/>
+                <rect x="27" y="5" width="12" height="12" fill="#333"/>
+                <rect x="29" y="7" width="8" height="8" fill="#f5e8d8"/>
+                <rect x="31" y="9" width="4" height="4" fill="#333"/>
+                <rect x="2" y="24" width="18" height="18" fill="none" stroke="#333" stroke-width="1.5"/>
+                <rect x="5" y="27" width="12" height="12" fill="#333"/>
+                <rect x="7" y="29" width="8" height="8" fill="#f5e8d8"/>
+                <rect x="9" y="31" width="4" height="4" fill="#333"/>
+                <rect x="24" y="24" width="4" height="4" fill="#333"/>
+                <rect x="30" y="24" width="4" height="4" fill="#333"/>
+                <rect x="36" y="24" width="6" height="4" fill="#333"/>
+                <rect x="24" y="30" width="6" height="4" fill="#333"/>
+                <rect x="32" y="30" width="4" height="4" fill="#333"/>
+                <rect x="24" y="36" width="4" height="6" fill="#333"/>
+                <rect x="30" y="36" width="6" height="4" fill="#333"/>
+                <rect x="38" y="34" width="4" height="8" fill="#333"/>
+              </svg>
+            </div>
+            <div style="font-size: 5.5pt; color: #555; line-height: 1.5;">Escanea para<br>más información</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end conclusions-references -->
+
+  </div><!-- end body -->
+
+</div><!-- end poster -->
+
+</body>
+</html>
